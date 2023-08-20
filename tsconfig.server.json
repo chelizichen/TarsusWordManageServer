@@ -3,7 +3,7 @@
     "compilerOptions": {
       "outDir": "dist",
       "module": "commonjs",
-      "noEmit": false
+      "noEmit": false,
     },
     "include": ["src/*.ts"],
     "exclude": ["src/client"]

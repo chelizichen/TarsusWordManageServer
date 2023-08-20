@@ -3,6 +3,10 @@
         "strictPropertyInitialization": false,
         "esModuleInterop":true,
         "downlevelIteration":true,
-        "lib": ["ESNext","DOM"]
+        "lib": ["ESNext","DOM"],
+        "paths": {
+            "@/*": ["src/client/*"]
+        },
+        "baseUrl": "./"
     },
 }

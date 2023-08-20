@@ -2,7 +2,7 @@
 <template>
   <div class="box-bubble">
     <div class="bubble bubble-1" @click="to('user')">用户</div>
-    <div class="bubble bubble-2" @click="to('word')">单词</div>
+    <div class="bubble bubble-2" @click="to('record')">历史</div>
     <div class="bubble bubble-3" @click="setVisable()">
       记录
     </div>
@@ -13,6 +13,7 @@
     <div class="bubble bubble-8">进度</div>
     <div class="bubble bubble-9">统计</div>
     <!-- <div class="bubble bubble-center">START</div> -->
+    <Record></Record>
   </div>
 </template>
 
@@ -20,7 +21,7 @@
 import { useRouter } from "vue-router";
 import store from "../../store/index";
 const appStore = store.app;
-
+import Record from "@/components/record/index.vue";
 const router = useRouter();
 
 function to(path: string) {
@@ -36,41 +37,60 @@ function setVisable(){
 
 <style scoped lang="less">
 .box-bubble {
+  z-index: 999;
   .bubble-1 {
+    left: 20px;
     top: 100px;
-    right: 30px;
+    //top: 100px;
+    //left: 30px;
   }
   .bubble-2 {
-    top: 150px;
-    right: 90px;
+    left: 20px;
+    top: 160px;
+    //top: 150px;
+    //left: 90px;
   }
   .bubble-3 {
-    top: 200px;
-    right: 140px;
+    left: 20px;
+    top: 220px;
+    //top: 200px;
+    //left: 140px;
   }
   .bubble-4 {
-    top: 250px;
-    right: 180px;
+    left: 20px;
+    top: 280px;
+    //top: 250px;
+    //left: 180px;
   }
   .bubble-5 {
-    top: 310px;
-    right: 200px;
+    left: 20px;
+    top: 340px;
+    //top: 310px;
+    //left: 200px;
   }
   .bubble-6 {
-    top: 370px;
-    right: 180px;
+    left: 20px;
+    top: 400px;
+    //top: 370px;
+    //left: 180px;
   }
   .bubble-7 {
-    top: 420px;
-    right: 140px;
+    left: 20px;
+    top: 460px;
+    //top: 420px;
+    //left: 140px;
   }
   .bubble-8 {
-    top: 470px;
-    right: 90px;
+    left: 20px;
+    top: 520px;
+    //top: 470px;
+    //left: 90px;
   }
   .bubble-9 {
-    top: 520px;
-    right: 30px;
+    left: 20px;
+    top: 580px;
+    //top: 520px;
+    //left: 30px;
   }
   .bubble-center {
     top: 280px;

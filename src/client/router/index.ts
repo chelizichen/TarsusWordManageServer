@@ -17,9 +17,13 @@ let routes: RouteRecordRaw[] = [
         path:"user",
         component:()=>import("@/views/admin/user/index.vue")
       },
+      // {
+      //   path:"word",
+      //   component:()=>import("@/components/record/index.vue")
+      // },
       {
-        path:"word",
-        component:()=>import("@/views/admin/word/index.vue")
+        path:"record",
+        component:()=>import("@/views/admin/word/record.vue")
       }
     ]
   }

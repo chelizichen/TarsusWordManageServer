@@ -12,15 +12,15 @@
           <el-form-item label="类型">
             <el-select v-model="wordForm.type" placeholder="请选择类型">
               <el-option
-                v-for="(item, key) in RemindWordOption"
-                :key="key"
-                :value="item.value"
-                :label="item.label"
+                  v-for="(item, key) in RemindWordOption"
+                  :key="key"
+                  :value="item.value"
+                  :label="item.label"
               ></el-option>
             </el-select>
           </el-form-item>
-        <el-form-item label="笔记">
-            <el-input v-model="wordForm.own_mark"></el-input>
+          <el-form-item label="笔记">
+            <el-input v-model="wordForm.own_mark" type="textarea"  :rows="3"></el-input>
           </el-form-item>
         </el-form>
       </template>
@@ -35,13 +35,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
-import { ElMessageBox } from "element-plus";
-import store from "@/store/index";
-import { Word } from "../../../dto/index";
-import { RemindWordOption } from "../../../dto/option";
+import {ref} from "vue";
+import {ElMessageBox, ElNotification} from "element-plus";
+import store from "@/store";
+import {Word} from "../../dto";
+import {RemindWordOption} from "../../dto/option";
 import moment from 'moment';
-import {getWordList,saveWord} from '@/api/word';
+import {getWordList, saveWord} from '@/api/word';
 
 const appStore = store.app;
 const wordForm = ref<Word>({
@@ -52,14 +52,19 @@ const wordForm = ref<Word>({
   type: "1",
   // 其他字段
 });
+
 async function addWord() {
-    wordForm.value.create_time = moment().format("YYYY-MM-DD HH:mm:ss")
-    wordForm.value.id = undefined;
-    const data = saveWord(wordForm.value)
-    console.log(data);
-    
-    cancelClick();
+  wordForm.value.create_time = moment().format("YYYY-MM-DD HH:mm:ss")
+  wordForm.value.id = undefined;
+  const data = await saveWord(wordForm.value)
+  ElNotification({
+    message:data.message,
+    type:!data.code?"success":"error",
+    position:"top-left"
+  })
+  cancelClick();
 }
+
 function cancelClick() {
   appStore.setRemindWordVisable(false);
 }

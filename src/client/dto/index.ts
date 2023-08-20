@@ -4,6 +4,7 @@ export class Word {
     public create_time: string;
     public own_mark: string;
     public type: string;
+    public total_trans:number
 };
 
 export class WordTranslate {
@@ -12,6 +13,15 @@ export class WordTranslate {
     public en_type: string;
     public own_mark: string;
     public create_time: string;
-    public word_id: number;
+    public word_id: number
 };
 
+
+export class getTranslateListReq {
+    public desc: string;
+    public keyword: string;
+    public page: number;
+    public size: number;
+    public start_time: string;
+    public end_time: string;
+};

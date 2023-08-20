@@ -1,28 +1,52 @@
 import HTTPRequest from '@/utils/axios';
 
 export function getWordList(data) {
+    const req = {
+        'data': data,
+        "interFace": "word",
+        "method": "getWordList",
+        "proxy": "WordNodeServer",
+        "request": "getWordListReq",
+        "timeout":"60000"
+    }
     return HTTPRequest({
         url: "/proxy/invoke",
         method: "post",
-        data: data
+        data: req
     })
 }
 
 
 export function getTranslateList(data) {
+    const req = {
+        'data': data,
+        "interFace": "word",
+        "method": "getWordList",
+        "proxy": "WordNodeServer",
+        "request": "getWordListReq",
+        "timeout":"60000"
+    }
     return HTTPRequest({
         url: "WordServerInf/getTranslateList",
         method: "post",
-        data
+        data:req
     })
 }
 
 
 export function delWordById(data) {
+    const req = {
+        'data': data,
+        "interFace": "word",
+        "method": "delWordById",
+        "proxy": "WordNodeServer",
+        "request": "DelReq",
+        "timeout":"60000"
+    }
     return HTTPRequest({
-        url: "WordServerInf/delWordById",
+        url: "/proxy/invoke",
         method: "post",
-        data
+        data:req
     })
 }
 
