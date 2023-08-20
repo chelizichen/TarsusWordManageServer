@@ -9,7 +9,7 @@ module.exports = {
             type: "mysql",
             host: "localhost",
             username: "root",
-            password: "12345678",
+            password: "123456",
             database: "test_db", //所用数据库
             port: 3306,
             connectionLimit: 10,

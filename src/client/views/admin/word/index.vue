@@ -53,7 +53,7 @@ const wordForm = ref<Word>({
   // 其他字段
 });
 async function addWord() {
-    wordForm.value.create_time = moment().format("YYYY-MM-DD hh:mm:ss")
+    wordForm.value.create_time = moment().format("YYYY-MM-DD HH:mm:ss")
     wordForm.value.id = undefined;
     const data = saveWord(wordForm.value)
     console.log(data);
