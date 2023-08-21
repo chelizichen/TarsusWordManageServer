@@ -39,7 +39,7 @@ import {ref} from "vue";
 import {ElMessageBox, ElNotification} from "element-plus";
 import store from "@/store";
 import {Word} from "@/dto/Word";
-import {RemindWordOption} from "../../dto/option";
+import {RemindWordOption} from "@/dto/option";
 import moment from 'moment';
 import {getWordList, saveWord} from '@/api/word';
 

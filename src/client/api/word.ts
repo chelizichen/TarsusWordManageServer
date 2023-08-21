@@ -40,7 +40,7 @@ export function delWordById(data) {
         "interFace": "word",
         "method": "delWordById",
         "proxy": "WordNodeServer",
-        "request": "DelReq",
+        "request": "queryIdReq",
         "timeout":"60000"
     }
     return HTTPRequest({
@@ -69,9 +69,33 @@ export function saveWord(data) {
 
 
 export function saveTranslate(data) {
+    const req = {
+        'data': data,
+        "interFace": "word",
+        "method": "saveTranslate",
+        "proxy": "WordNodeServer",
+        "request": "WordTranslate",
+        "timeout":"60000"
+    }
     return HTTPRequest({
-        url: "WordServerInf/saveTranslate",
+        url: "/proxy/invoke",
         method: "post",
-        data
+        data:req
+    })
+}
+
+export function getTranslateListById(data){
+    const req = {
+        'data': data,
+        "interFace": "word",
+        "method": "getTranslateListById",
+        "proxy": "WordNodeServer",
+        "request": "queryIdReq",
+        "timeout":"60000"
+    }
+    return HTTPRequest({
+        url: "/proxy/invoke",
+        method: "post",
+        data:req
     })
 }

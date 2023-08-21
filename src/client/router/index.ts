@@ -19,7 +19,7 @@ let routes: RouteRecordRaw[] = [
       },
       // {
       //   path:"word",
-      //   component:()=>import("@/components/record/index.vue")
+      //   component:()=>import("@/components/record/words.vue")
       // },
       {
         path:"record",

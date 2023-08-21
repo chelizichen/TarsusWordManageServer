@@ -37,6 +37,7 @@ export class getWordListReq {
     public size: number;
     public start_time: string;
     public end_time: string;
+    public type : number;
 
 };
 
@@ -55,6 +56,7 @@ export class getTranslateListReq {
     public size: number;
     public start_time: string;
     public end_time: string;
+    public type : number;
 
 
 };

@@ -14,6 +14,7 @@
     <div class="bubble bubble-9">统计</div>
     <!-- <div class="bubble bubble-center">START</div> -->
     <Record></Record>
+    <Translates></Translates>
   </div>
 </template>
 
@@ -21,7 +22,8 @@
 import { useRouter } from "vue-router";
 import store from "../../store/index";
 const appStore = store.app;
-import Record from "@/components/record/index.vue";
+import Record from "@/components/record/words.vue";
+import Translates from "@/components/record/translates.vue";
 const router = useRouter();
 
 function to(path: string) {
