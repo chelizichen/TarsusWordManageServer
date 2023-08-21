@@ -2,7 +2,7 @@
   <div>
     <el-container>
       <Header></Header>
-      <el-main style="margin-top: 70px;padding:0">
+      <el-main style="margin-top: 60px;padding:0;background:#fff7e4;height:90vh">
         <router-view></router-view>
       </el-main>
     </el-container>
