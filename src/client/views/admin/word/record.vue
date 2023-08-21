@@ -33,7 +33,7 @@ import {delWordById, getWordList} from "@/api/word";
 import {onMounted, reactive, ref} from "vue";
 import {getWordListReq} from "../../../../struct/Word";
 import {RemindWordOption} from "@/dto/option";
-import {getTranslateListReq} from '@/dto/index'
+import {getTranslateListReq} from '@/dto/Word'
 import {ElNotification} from "element-plus";
 
 const req = ref(<getWordListReq>{

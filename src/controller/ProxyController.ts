@@ -1,7 +1,7 @@
 import { Controller, Get, INVOKE, $Transmit } from 'tarsus/core/httpservice'
 
 @Controller("/proxy")
-class UserController {
+class ProxyController {
 
     @INVOKE("/invoke")
     invoke(req, res) {
@@ -10,4 +10,4 @@ class UserController {
     }
 }
 
-export default UserController;
+export default ProxyController;
