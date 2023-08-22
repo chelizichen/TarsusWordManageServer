@@ -8,7 +8,7 @@
     </div>
     <div class="bubble bubble-4">打卡</div>
     <div class="bubble bubble-5">查询</div>
-    <div class="bubble bubble-6">计划</div>
+    <div class="bubble bubble-6" @click="to('plan')">计划</div>
     <div class="bubble bubble-7">分类</div>
     <div class="bubble bubble-8">进度</div>
     <div class="bubble bubble-9">统计</div>

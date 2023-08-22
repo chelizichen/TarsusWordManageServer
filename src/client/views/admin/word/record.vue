@@ -32,8 +32,16 @@
           <span>{{ getType(scope.row.type) }}</span>
         </template>
       </el-table-column>
+      <el-table-column prop="update_time" label="更新时间" width="180" align="center"/>
       <el-table-column prop="create_time" label="创建时间" width="180" align="center"/>
-      <el-table-column prop="own_mark" label="备注" width="300" align="center"/>
+      <el-table-column prop="own_mark" label="备注" width="150" align="center"/>
+      <el-table-column prop="word_translates" label="翻译" width="300" align="center">
+        <template #default="scope">
+          <div v-for="item in getWordsTranslate(scope.row.word_translates)">
+            <span>{{item.en_type}}</span> - <span>{{item.cn_name}}</span>
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" width="180" align="center" fixed="right">
         <template #default="scope">
           <el-button type="danger" @click="delWord(scope.row.id)">删除</el-button>
@@ -104,6 +112,11 @@ async function getTranslate(row) {
   }
   store.app.setRemindTranslateVisable(true, data, word)
 }
+
+function getWordsTranslate(text:string){
+  return JSON.parse(text)
+}
+
 </script>
 
 <style scoped>

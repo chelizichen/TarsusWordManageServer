@@ -23,7 +23,7 @@ export const WordTypeOptions = [
         value:"v",
     },
     {
-        label:"名次",
+        label:"名词",
         value:"n"
     },
     {
@@ -37,5 +37,13 @@ export const WordTypeOptions = [
     {
         label: "介词",
         value: "prep"
+    },
+    {
+        label: "动词/名词",
+        value: "v/n"
+    },
+    {
+        label: "动词/副词",
+        value: "v/adv"
     }
 ]

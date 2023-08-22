@@ -11,7 +11,6 @@
 
 <script setup lang="ts">
 import Header from '@/components/header/index.vue'
-import Word from './Word.taro';
 import {onMounted, ref} from 'vue';
 
 
