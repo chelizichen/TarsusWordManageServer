@@ -113,7 +113,7 @@ async function getTranslate(row) {
   store.app.setRemindTranslateVisable(true, data, word)
 }
 
-function getWordsTranslate(text:string){
+function getWordsTranslate(text:string):any[]{
   return JSON.parse(text)
 }
 
