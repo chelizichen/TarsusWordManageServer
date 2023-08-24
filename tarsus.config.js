@@ -3,6 +3,7 @@ module.exports = {
         project: "@TarsusWord/WebManageServer -l node -t @tarsus/http -h 127.0.0.1 -p 14001",
         servant:[
             "@TarsusWord/WordNodeServer -l node -t @tarsus/ms -h 127.0.0.1 -p 14002 -w 10",
+            '@TarsusWord/UserServer -l node -t @tarsus/ms -h 127.0.0.1 -p 14003 -w 10'
         ],
         database: {
             default: true,
@@ -14,7 +15,7 @@ module.exports = {
             port: 3306,
             connectionLimit: 10,
         },
-
+        proxy:"http://localhost:14001/proxy/invoke"
     },
     web: {
         // 用于定义webpack的输出路径
