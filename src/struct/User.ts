@@ -6,6 +6,8 @@ export class User {
     public password: string;
     public email: string;
     public phone: string;
+    public role_name: string;
+    public level: string;
     public create_time: string;
     public update_time: string;
 
@@ -16,8 +18,10 @@ export class User {
         this.password = _TarsusReadStream.read_string(3);
         this.email = _TarsusReadStream.read_string(4);
         this.phone = _TarsusReadStream.read_string(5);
-        this.create_time = _TarsusReadStream.read_string(6);
-        this.update_time = _TarsusReadStream.read_string(7);
+        this.role_name = _TarsusReadStream.read_string(6);
+        this.level = _TarsusReadStream.read_string(7);
+        this.create_time = _TarsusReadStream.read_string(8);
+        this.update_time = _TarsusReadStream.read_string(9);
     }
 };
 
@@ -36,6 +40,26 @@ export class queryIdsReq {
     constructor(...args: any[]) {
         const _TarsusReadStream = new TarsusReadStream("queryIdsReq", args);
         this.ids = _TarsusReadStream.read_list(1, "List<int>");
+    }
+};
+
+export class userBaseInfo {
+    public id: number;
+    public user_name: string;
+
+    constructor(...args: any[]) {
+        const _TarsusReadStream = new TarsusReadStream("userBaseInfo", args);
+        this.id = _TarsusReadStream.read_int(1);
+        this.user_name = _TarsusReadStream.read_string(2);
+    }
+};
+
+export class queryUsersNameRes {
+    public users: Array<userBaseInfo>;
+
+    constructor(...args: any[]) {
+        const _TarsusReadStream = new TarsusReadStream("queryUsersNameRes", args);
+        this.users = _TarsusReadStream.read_list(1, "List<userBaseInfo>");
     }
 };
 
