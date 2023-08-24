@@ -17,7 +17,7 @@
     "less": "^4.1.3",
     "moment": "^2.29.4",
     "pinia": "^2.1.6",
-    "tarsus": "1.4.92",
+    "tarsus": "1.4.93",
     "tarsus-cli": "1.2.97",
     "tarsus-loader": "1.1.0",
     "typescript": "5.0.2",
