@@ -74,8 +74,15 @@
           <el-form-item>
             <el-button type="primary" @click="getList(true)">刷新</el-button>
           </el-form-item>
+          <el-form-item label="开始时间">
+            <el-date-picker
+                v-model="words_mark_date"
+                type="date"
+                placeholder="请选择开始时间"
+            />
+          </el-form-item>
         </el-form>
-        <el-table :data="state.list" border>
+        <el-table :data="state.list" border @select="handleSelect">
           <el-table-column type="selection" width="60" align="center"/>
           <el-table-column prop="total_trans" label="翻译" width="120" align="center">
             <template #default="scope">
@@ -100,6 +107,9 @@
           </el-table-column>
         </el-table>
       </div>
+      <template #footer>
+        <el-button type="primary" @click="submitWords()">提交</el-button>
+      </template>
     </el-dialog>
   </div>
 </template>
@@ -158,12 +168,7 @@ async function getPlansList() {
   list.value = data.data;
 }
 
-function addPlanWord(row) {
-  const {word_id} = row
-  wordsVisible.value = true;
-  console.log(wordsVisible)
-  getList()
-}
+
 
 function addPlan(){
   visible.value = true
@@ -230,6 +235,37 @@ onMounted(() => {
   getPlansList()
 })
 
+function addPlanWord(row) {
+  console.log(row)
+  const {id} = row
+  words_plan_id.value = String(id);
+  wordsVisible.value = true;
+  console.log(wordsVisible)
+  getList()
+}
+
+const selections = ref([])
+const words_mark_date = ref('')
+const words_plan_id = ref();
+function handleSelect(selection,row){
+  selections.value = selection
+  console.log(selection)
+  console.log(row)
+}
+
+async function submitWords(){
+  const planWords = new PlanWords();
+  const ids  = selections.value.map(item=>{
+    return item.id;
+  })
+  planWords.word_ids = JSON.stringify(ids)
+  planWords.plan_id = words_plan_id.value
+  planWords.user_id = '1'
+  planWords.mark_date = moment(words_mark_date.value || undefined).format("YYYY-MM-DD")
+  planWords.is_mark = 0
+  const data = await savePlanWords(planWords)
+  console.log(data)
+}
 
 </script>
 
