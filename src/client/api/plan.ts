@@ -48,3 +48,19 @@ export function getPlansByUser(data){
         data: req
     })
 }
+
+export function getPlanWordsById(data){
+    const req = {
+        'data': data,
+        "interFace": "plan",
+        "method": "getPlanWordsById",
+        "proxy": "WordNodeServer",
+        "request": "queryIdReq",
+        "timeout":"60000"
+    }
+    return HTTPRequest({
+        url: "/proxy/invoke",
+        method: "post",
+        data: req
+    })
+}

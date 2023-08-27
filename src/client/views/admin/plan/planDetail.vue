@@ -9,7 +9,7 @@
       <el-divider content-position="right">我的计划</el-divider>
       <el-table border :data="list">
         <el-table-column label="序号" type="index" align="center"></el-table-column>
-        <el-table-column label="已完成" prop="is_mark" align="center">
+        <el-table-column label="已完成" prop="is_mark" align="center" width="100">
           <template #default="scope">
             {{ scope.row.is_mark == 0 ? "未完成" : "已完成" }}
           </template>
@@ -19,7 +19,10 @@
         <el-table-column label="创建时间" prop="create_time" align="center"></el-table-column>
         <el-table-column label="操作" align="center">
           <template #default="scope">
-            <el-button type="primary" @click="addPlanWord(scope.row)">添加复习计划</el-button>
+            <div style="display: flex;padding: 5px 10px">
+              <el-button type="primary" @click="addPlanWord(scope.row)">添加复习计划</el-button>
+              <el-button type="primary" @click="checkWordPlans(scope.row)">查看计划</el-button>
+            </div>
           </template>
         </el-table-column>
       </el-table>
@@ -119,7 +122,7 @@ import {computed, onMounted, reactive, ref} from 'vue'
 import {ElButton, ElDialog, ElNotification} from 'element-plus'
 import {PlanDetail, PlanWords} from "@/dto/Plan";
 import moment from "moment";
-import {savePlan, getPlansByUser, savePlanWords} from "@/api/plan";
+import {savePlan, getPlansByUser, savePlanWords,getPlanWordsById} from "@/api/plan";
 import {RemindWordOption} from "@/dto/option";
 import {getWordListReq} from "../../../../struct/Word";
 import {delWordById, getTranslateListById, getWordList} from "@/api/word";
@@ -264,6 +267,12 @@ async function submitWords(){
   planWords.mark_date = moment(words_mark_date.value || undefined).format("YYYY-MM-DD")
   planWords.is_mark = 0
   const data = await savePlanWords(planWords)
+  console.log(data)
+}
+
+async function checkWordPlans(row:any){
+  const {id} = row;
+  const data = await getPlanWordsById({id})
   console.log(data)
 }
 
