@@ -64,3 +64,19 @@ export function getPlanWordsById(data){
         data: req
     })
 }
+
+export function markPlanWords(data){
+    const req = {
+        'data': data,
+        "interFace": "plan",
+        "method": "markPlanWords",
+        "proxy": "WordNodeServer",
+        "request": "queryIdReq",
+        "timeout":"60000"
+    }
+    return HTTPRequest({
+        url: "/proxy/invoke",
+        method: "post",
+        data: req
+    })
+}

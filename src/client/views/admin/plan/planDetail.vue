@@ -27,7 +27,7 @@
         </el-table-column>
       </el-table>
     </div>
-    <el-dialog v-model="visible"  width="400px" >
+    <el-dialog v-model="visible" width="400px">
       <template #header="{ close, titleId, titleClass }">
         <div class="my-header">
           <h4 :id="titleId" :class="titleClass">自定义计划</h4>
@@ -53,7 +53,7 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-    <el-dialog v-model="wordsVisible"  width="1200px" >
+    <el-dialog v-model="wordsVisible" width="1200px">
       <template #header="{ close, titleId, titleClass }">
         <div class="my-header">
           <h4 :id="titleId" :class="titleClass">添加单词计划</h4>
@@ -114,6 +114,27 @@
         <el-button type="primary" @click="submitWords()">提交</el-button>
       </template>
     </el-dialog>
+    <el-dialog v-model="checkPlanVisible" width="1200px">
+      <template #header>
+        <div>查看单词计划</div>
+      </template>
+      <el-table :data="checkList" border>
+        <el-table-column type="index" label="序号" width="60" align="center"/>
+        <el-table-column prop="is_mark" label="是否完成" width="120" align="center">
+          <template #default="scope">
+            <div>{{ scope.row.is_mark ? "已完成" : "未完成" }}</div>
+          </template>
+        </el-table-column>
+        <el-table-column prop="mark_date" label="打卡日期" width="180" align="center"/>
+        <el-table-column prop="plan_id" label="父计划" width="90" align="center"></el-table-column>
+        <el-table-column prop="word_ids" label="具体单词" width="180" align="center"/>
+        <el-table-column prop="word_translates" label="翻译" width="300" align="center">
+          <template #default="scope">
+            <el-button type="primary" @click="markWords(scope.row)">完成计划</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-dialog>
   </div>
 </template>
 
@@ -122,7 +143,7 @@ import {computed, onMounted, reactive, ref} from 'vue'
 import {ElButton, ElDialog, ElNotification} from 'element-plus'
 import {PlanDetail, PlanWords} from "@/dto/Plan";
 import moment from "moment";
-import {savePlan, getPlansByUser, savePlanWords,getPlanWordsById} from "@/api/plan";
+import {savePlan, getPlansByUser, savePlanWords, getPlanWordsById, markPlanWords} from "@/api/plan";
 import {RemindWordOption} from "@/dto/option";
 import {getWordListReq} from "../../../../struct/Word";
 import {delWordById, getTranslateListById, getWordList} from "@/api/word";
@@ -161,7 +182,6 @@ async function SavePlanWords() {
 }
 
 
-
 async function getPlansList() {
   const data = await getPlansByUser({id: 1})
   if (data.code) {
@@ -172,8 +192,7 @@ async function getPlansList() {
 }
 
 
-
-function addPlan(){
+function addPlan() {
   visible.value = true
   console.log(visible)
 }
@@ -250,15 +269,16 @@ function addPlanWord(row) {
 const selections = ref([])
 const words_mark_date = ref('')
 const words_plan_id = ref();
-function handleSelect(selection,row){
+
+function handleSelect(selection, row) {
   selections.value = selection
   console.log(selection)
   console.log(row)
 }
 
-async function submitWords(){
+async function submitWords() {
   const planWords = new PlanWords();
-  const ids  = selections.value.map(item=>{
+  const ids = selections.value.map(item => {
     return item.id;
   })
   planWords.word_ids = JSON.stringify(ids)
@@ -270,11 +290,22 @@ async function submitWords(){
   console.log(data)
 }
 
-async function checkWordPlans(row:any){
+const checkPlanVisible = ref(false)
+const checkList = ref([])
+
+async function checkWordPlans(row: any) {
   const {id} = row;
   const data = await getPlanWordsById({id})
+  checkList.value = data.data
+  checkPlanVisible.value = true
+}
+
+async function markWords(row) {
+  const {id} = row;
+  const data = await markPlanWords({id})
   console.log(data)
 }
+
 
 </script>
 
