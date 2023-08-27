@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div>
-      <el-button @click="visible = true" type="primary">
+      <el-button @click="addPlan()" type="primary">
         创建新的计划
       </el-button>
     </div>
@@ -19,12 +19,12 @@
         <el-table-column label="创建时间" prop="create_time" align="center"></el-table-column>
         <el-table-column label="操作" align="center">
           <template #default="scope">
-            <el-button type="primary" @click="AddPlan(scope.row)">添加复习计划</el-button>
+            <el-button type="primary" @click="addPlanWord(scope.row)">添加复习计划</el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
-    <el-dialog v-model="visible" :show-close="true" width="400px" :closed="visible = false">
+    <el-dialog v-model="visible"  width="400px" >
       <template #header="{ close, titleId, titleClass }">
         <div class="my-header">
           <h4 :id="titleId" :class="titleClass">自定义计划</h4>
@@ -50,7 +50,7 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-    <el-dialog v-model="wordsVisible" :show-close="true" width="1200px" :closed="wordsVisible = false">
+    <el-dialog v-model="wordsVisible"  width="1200px" >
       <template #header="{ close, titleId, titleClass }">
         <div class="my-header">
           <h4 :id="titleId" :class="titleClass">添加单词计划</h4>
@@ -122,7 +122,7 @@ const word_ids = ref('')
 const mark_date = ref('')
 const plan_id = ref('');
 const list = ref([])
-const wordsVisible = ref(true)
+const wordsVisible = ref(false)
 
 async function SavePlan() {
   let dto = new PlanDetail()
@@ -158,10 +158,16 @@ async function getPlansList() {
   list.value = data.data;
 }
 
-function AddPlan(row) {
+function addPlanWord(row) {
   const {word_id} = row
   wordsVisible.value = true;
+  console.log(wordsVisible)
   getList()
+}
+
+function addPlan(){
+  visible.value = true
+  console.log(visible)
 }
 
 const state = reactive({
