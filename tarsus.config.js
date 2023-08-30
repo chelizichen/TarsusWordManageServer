@@ -3,7 +3,8 @@ module.exports = {
         project: "@TarsusWord/WebManageServer -l node -t @tarsus/http -h 127.0.0.1 -p 14001",
         servant:[
             "@TarsusWord/WordNodeServer -l node -t @tarsus/ms -h 127.0.0.1 -p 14002 -w 10",
-            '@TarsusWord/UserServer -l node -t @tarsus/ms -h 127.0.0.1 -p 14003 -w 10'
+            '@TarsusWord/UserServer -l node -t @tarsus/ms -h 127.0.0.1 -p 14003 -w 10',
+            '@TarsusWord/RecordServer -l java -t @tarsus/ms -h 127.0.0.1 -p 14004 -w 10'
         ],
         database: {
             default: true,
