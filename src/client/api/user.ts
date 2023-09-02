@@ -7,6 +7,7 @@ function beforeInvoke(method,request,data){
         proxy: "UserServer",
         data,
         method,
+        request,
         timeout:"60000",
     }
     return HTTPRequest({

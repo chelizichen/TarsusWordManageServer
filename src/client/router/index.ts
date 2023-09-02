@@ -28,6 +28,10 @@ let routes: RouteRecordRaw[] = [
       {
         path:"plan",
         component:()=>import("@/views/admin/plan/planDetail.vue")
+      },
+      {
+        path:"sign",
+        component:()=>import("@/views/admin/sign/index.vue")
       }
     ]
   }

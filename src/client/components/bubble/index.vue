@@ -6,7 +6,7 @@
     <div class="bubble bubble-3" @click="setVisable()">
       记录
     </div>
-    <div class="bubble bubble-4">打卡</div>
+    <div class="bubble bubble-4" @click="to('sign')">打卡</div>
     <div class="bubble bubble-5">查询</div>
     <div class="bubble bubble-6" @click="to('plan')">计划</div>
     <div class="bubble bubble-7">分类</div>
